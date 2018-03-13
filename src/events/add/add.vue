@@ -5,8 +5,13 @@
       <el-form-item label="变量名">
         <el-input v-model="form.name"></el-input>
       </el-form-item>
-      <el-form-item label="值">
-        <el-input v-model="form.value"></el-input>
+      <el-form-item label="幅度">
+        <el-input v-model="form.value" class="range"></el-input>
+        <el-radio v-model="form.addOrde" label="0" class="add-rde">递增</el-radio>
+        <el-radio v-model="form.addOrde" label="1" class="add-rde">递减</el-radio>
+      </el-form-item>
+      <el-form-item label="上限">
+        <el-input v-model="form.name" class="range"></el-input>
       </el-form-item>
     </el-form>
   </popup>
@@ -21,8 +26,9 @@ export default {
         type:null,
         name: null,
         value: null,
+        addOrde:'0'
       },
-      options:['页面创建','实时刷新','左键单击','左键双击','右键单击','右键双击']
+      options:['页面创建','实时刷新','左键单击','左键双击','右键单击','右键双击','左键按住','右键按住']
     }
   },
   methods:{
@@ -42,6 +48,23 @@ components: {
 }
 }
 </script>
-<style scoped>
-
+<style>
+.trigger-mode .el-radio-group{
+  width: 420px;
+}
+.el-input{
+  width: 200px;
+}
+.el-input__inner{
+  height: 30px;
+}
+.range{
+  width: 100px;
+}
+.el-form-item__content .add-rde{
+  margin: 0 20px 0 10px;
+}
+.el-form-item{
+  margin-bottom: 10px;
+}
 </style>

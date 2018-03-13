@@ -6,7 +6,10 @@
      <!-- <color></color> -->
      <!-- <visual></visual> -->
      <!-- <mapping></mapping> -->
-     <set></set>
+     <!-- <set></set> -->
+     <!-- <setdyna></setdyna> -->
+     <!-- <add></add> -->
+     <go></go>
   </div>
 </template>
 
@@ -17,7 +20,10 @@
 // import Color from './confirm/color/color'
 // import Visual from './confirm/visual/visual'
 // import Mapping from './confirm/mapping/mapping'
-import Set from './events/set/set'
+// import Set from './events/set/set'
+// import Setdyna from './events/setdyna/setdyna'
+// import Add from './events/add/add'
+import Go from './events/go/go'
 export default {
   components:{
     // ValueShow,
@@ -26,7 +32,10 @@ export default {
     // Color,
     // Visual, 
     // Mapping, 
-    Set
+    // Set,
+    // Setdyna,
+    // Add,
+    Go
   }
 }
 </script>
