@@ -12,28 +12,48 @@
 </template>
 <script>
 import Popup from '../popup/popup'
-import { mapMutations } from 'vuex'
+import { mapGetters,mapMutations } from 'vuex'
+import { saveAttr } from '../../common/a.js'
 
 export default {
+  props:{
+    getId:{
+      type:String,
+      default:''
+    }
+  },
   data() {
     return {
       form: {
-        name: '',
-        type: ''
+        name:null,
+        type:null
       }
     }
   },
   methods:{
-   saveValue(){  
-    this.setValue(this.form)  		
-    console.log(this.form)
+   saveValue(){
+    saveAttr.add(this.clickId,'valueShow',this.form)
+    saveAttr.ab(this.clickId,'valueShow')
+    this.setValueShow(this.form)		
   },
   del(){
-    this.setValue({name:'',type:''})          
+    this.form={};
+    this.setValueShow(this.form)
   },
-  ...mapMutations({setValue:'SET_VALUE_SHOW'})
+  ...mapMutations({setValueShow:'SET_VALUE_SHOW'})
+},
+computed:{
+  ...mapGetters(['clickId','valueShow'])
 },
 mounted(){
+  this.$nextTick(function(){
+    this.form=this.valueShow
+  })
+},
+watch:{
+  valueShow(newVal){
+    this.form=newVal
+  }
 },
 components: {
   Popup

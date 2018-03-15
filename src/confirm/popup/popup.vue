@@ -1,5 +1,5 @@
 <template>
-  <div id="popup" v-show="showPopup">
+  <div id="popup" v-if="showPopup">
     <div class="popup-wrapper">
       <div class="popup-container">
         <div class="popup-title">
@@ -18,6 +18,8 @@
   </div>
 </template>
 <script>
+import { mapGetters,mapMutations } from 'vuex'
+
 export default {
   props: {
     title: {
@@ -33,29 +35,22 @@ export default {
       default: '删除'
     }
   },
-  data() {
-    return {
-      showPopup: true
-    }
+  computed:{
+    ...mapGetters(['showPopup'])
   },
   methods: {
-    show() {
-      this.showPopup = true
-    },
-    hide() {
-      this.showPopup = false
-    },
     saveBtn() {
-      this.hide()
       this.$emit('save')
+      this.setShow(false)
     },
     delBtn() {
-      this.hide()
       this.$emit('del')
+      this.setShow(false)
     },
     closeBtn() {
-      this.hide()
-    }
+      this.setShow(false)
+    },
+    ...mapMutations({setShow:'SET_SHOW_POPUP'})
   }
 }
 </script>

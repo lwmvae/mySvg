@@ -1,40 +1,66 @@
 <template>
   <div id="app">
-     <!-- <value-show></value-show> -->
-     <!-- <length></length> -->
-     <!-- <text-dynamics></text-dynamics> -->
-     <!-- <color></color> -->
-     <!-- <visual></visual> -->
-     <!-- <mapping></mapping> -->
-     <!-- <set></set> -->
-     <!-- <setdyna></setdyna> -->
-     <!-- <add></add> -->
-     <go></go>
+    <button id="btn1" @click="add('ValueShow','btn1')">点击</button>  
+    <button id="btn2" @click="add('ValueShow','btn2')">点击</button>  
+    <component :is="componentName"></component>
   </div>
 </template>
 
 <script>
-// import ValueShow from './confirm/valueShow/valueShow'
-// import Length from './confirm/length/length'
-// import TextDynamics from './confirm/text/text'
-// import Color from './confirm/color/color'
-// import Visual from './confirm/visual/visual'
-// import Mapping from './confirm/mapping/mapping'
-// import Set from './events/set/set'
-// import Setdyna from './events/setdyna/setdyna'
-// import Add from './events/add/add'
+//值显示
+import ValueShow from './confirm/valueShow/valueShow'
+// 文本动态
+import TextDynamics from './confirm/text/text'
+// 长度动态
+import Length from './confirm/length/length'
+// 颜色动态
+import Color from './confirm/color/color'
+// 可见动态
+import Visual from './confirm/visual/visual'
+// 变量映射
+import Mapping from './confirm/mapping/mapping'
+// SET
+import Set from './events/set/set'
+// SETDYNA
+import Setdyna from './events/setdyna/setdyna'
+// ADD
+import Add from './events/add/add'
+// GO
 import Go from './events/go/go'
+
+import { mapMutations } from 'vuex'
+import { saveAttr } from './common/a.js'
+
 export default {
+  data(){
+    return{
+      getId:'',
+      componentName:''
+    }
+  },
+  methods:{
+    add(name,id){
+      this.setShow(true);
+      this.componentName=name;
+      this.setClickId(id);
+      this.setValueShow(saveAttr.ab(id,'valueShow'))
+    },
+    ...mapMutations({
+      setShow:'SET_SHOW_POPUP',
+      setClickId:'SET_CLICK_ID',
+      setValueShow:'SET_VALUE_SHOW'
+    })
+  },
   components:{
-    // ValueShow,
-    // Length,
-  	// TextDynamics,
-    // Color,
-    // Visual, 
-    // Mapping, 
-    // Set,
-    // Setdyna,
-    // Add,
+    ValueShow,
+    Length,
+    TextDynamics,
+    Color,
+    Visual, 
+    Mapping, 
+    Set,
+    Setdyna,
+    Add,
     Go
   }
 }

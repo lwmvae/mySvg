@@ -1,13 +1,19 @@
 import * as types from '../mutation-types'
+import { saveAttr } from '../../common/a.js'
 
 let state = {
-  valueShow: [{
-    name: '123',
-    type: '456'
-  }]
+  showPopup:false,
+  clickId:null,
+  valueShow: {}
 }
 
 const getters = {
+  showPopup(state) {
+    return state.showPopup
+  },
+  clickId(state){
+    return state.clickId
+  },
   valueShow(state) {
     return state.valueShow
   }
@@ -15,6 +21,12 @@ const getters = {
 
 
 const mutations = {
+  [types.SET_SHOW_POPUP](state, showPopup) {
+    state.showPopup = showPopup
+  },
+  [types.SET_CLICK_ID](state, clickId) {
+    state.clickId = clickId
+  },
   [types.SET_VALUE_SHOW](state, valueShow) {
     state.valueShow = valueShow
   }

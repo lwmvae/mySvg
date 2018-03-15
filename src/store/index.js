@@ -13,5 +13,5 @@ export default new Vuex.Store({
   modules:{
   	addAttr
   },
-  strict: process.env.NODE_ENV !== 'production'
+  // strict: process.env.NODE_ENV !== 'production'
 })
