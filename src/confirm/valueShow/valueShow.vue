@@ -13,7 +13,7 @@
 <script>
 import Popup from '../popup/popup'
 import { mapGetters,mapMutations } from 'vuex'
-import { saveAttr } from '../../common/a.js'
+// import { saveAttr } from '../../common/a.js'
 
 export default {
   props:{
@@ -32,8 +32,8 @@ export default {
   },
   methods:{
    saveValue(){
-    saveAttr.add(this.clickId,'valueShow',this.form)
-    saveAttr.ab(this.clickId,'valueShow')
+    // saveAttr.add(this.clickId,'valueShow',this.form)
+    // saveAttr.ab(this.clickId,'valueShow')
     this.setValueShow(this.form)		
   },
   del(){

@@ -1,5 +1,4 @@
 import * as types from '../mutation-types'
-import { saveAttr } from '../../common/a.js'
 
 let state = {
   showPopup:false,

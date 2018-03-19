@@ -29,7 +29,9 @@ import Add from './events/add/add'
 import Go from './events/go/go'
 
 import { mapMutations } from 'vuex'
-import { saveAttr } from './common/a.js'
+
+import { SaveAttr } from './common/a.js'
+var saveAttr=new SaveAttr();
 
 export default {
   data(){
@@ -43,7 +45,7 @@ export default {
       this.setShow(true);
       this.componentName=name;
       this.setClickId(id);
-      this.setValueShow(saveAttr.ab(id,'valueShow'))
+      // this.setValueShow(saveAttr.ab(id,'valueShow'))
     },
     ...mapMutations({
       setShow:'SET_SHOW_POPUP',
