@@ -1,8 +1,10 @@
 <template>
   <div id="app">
-    <button id="btn1" @click="add('ValueShow','btn1')">点击</button>  
-    <button id="btn2" @click="add('ValueShow','btn2')">点击</button>  
-    <component :is="componentName"></component>
+    <button id="btn1" @click="add('valueShow','btn1')">点击</button>  
+    <button id="btn2" @click="add('valueShow','btn2')">点击</button>  
+    <button id="btn3" @click="add('textDynamics','btn3')">点击</button>  
+    <button id="btn4" @click="add('textDynamics','btn4')">点击</button>  
+    <component :is="componentName" :getId="getId"></component>
   </div>
 </template>
 
@@ -30,9 +32,6 @@ import Go from './events/go/go'
 
 import { mapMutations } from 'vuex'
 
-import { SaveAttr } from './common/a.js'
-var saveAttr=new SaveAttr();
-
 export default {
   data(){
     return{
@@ -44,13 +43,10 @@ export default {
     add(name,id){
       this.setShow(true);
       this.componentName=name;
-      this.setClickId(id);
-      // this.setValueShow(saveAttr.ab(id,'valueShow'))
+      this.getId=id;
     },
     ...mapMutations({
-      setShow:'SET_SHOW_POPUP',
-      setClickId:'SET_CLICK_ID',
-      setValueShow:'SET_VALUE_SHOW'
+      setShow:'SET_SHOW_POPUP'
     })
   },
   components:{

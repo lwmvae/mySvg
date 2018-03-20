@@ -12,8 +12,7 @@
 </template>
 <script>
 import Popup from '../popup/popup'
-import { mapGetters,mapMutations } from 'vuex'
-// import { saveAttr } from '../../common/a.js'
+import { saveAttr } from '../../common/attribute.js'
 
 export default {
   props:{
@@ -31,33 +30,25 @@ export default {
     }
   },
   methods:{
-   saveValue(){
-    // saveAttr.add(this.clickId,'valueShow',this.form)
-    // saveAttr.ab(this.clickId,'valueShow')
-    this.setValueShow(this.form)		
+    saveValue(){
+      saveAttr.add(this.getId,'valueShow',this.form)
+    },
+    del(){
+      this.form={};
+      saveAttr.del(this.getId,'valueShow')
+    },
   },
-  del(){
-    this.form={};
-    this.setValueShow(this.form)
+  mounted(){
+    this.form=saveAttr.obtain(this.getId,'valueShow')
   },
-  ...mapMutations({setValueShow:'SET_VALUE_SHOW'})
-},
-computed:{
-  ...mapGetters(['clickId','valueShow'])
-},
-mounted(){
-  this.$nextTick(function(){
-    this.form=this.valueShow
-  })
-},
-watch:{
-  valueShow(newVal){
-    this.form=newVal
+  watch:{
+    getId(newVal){
+      this.form=saveAttr.obtain(newVal,'valueShow')
+    }
+  },
+  components: {
+    Popup
   }
-},
-components: {
-  Popup
-}
 }
 </script>
 <style scoped>

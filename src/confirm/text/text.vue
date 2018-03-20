@@ -4,7 +4,7 @@
       <el-form-item label="变量名">
         <el-input v-model="form.name" class="name"></el-input>
       </el-form-item>
-      <table class="table" v-show="form.value.length">
+      <table class="table">
         <thead>
           <th>序号</th>
           <th>选中</th>
@@ -39,8 +39,15 @@
 </template>
 <script>
 import Popup from '../popup/popup'
+import { saveAttr } from '../../common/attribute.js'
 
 export default {
+  props:{
+    getId:{
+      type:String,
+      default:''
+    }
+  },
   data() {
     return {
       form: {
@@ -50,15 +57,19 @@ export default {
     }
   },
   methods:{
-   saveValue(){ 
-    // this.filterForm(this.form.value) 
-    console.log(this.filterForm(this.form.value))
-   },
-   del(){
-
-   },
-   add(){
-    this.form.value.push({choose:true,min:null,max:null,text:null})
+    saveValue(){
+      this.form.value=this.filterForm(this.form.value) 
+      saveAttr.add(this.getId,'textDynamics',this.form)
+    },
+    del(){
+      this.form={
+        name: null,
+        value:[{choose:true,min:null,max:null,text:null}]
+      };
+      saveAttr.del(this.getId,'textDynamics')
+    },
+    add(){
+      this.form.value.push({choose:true,min:null,max:null,text:null})
     },
     reduce(index){
       this.form.value.splice(index,1)
@@ -71,6 +82,30 @@ export default {
         }
       })
       return ret;
+    },
+  },
+  mounted(){
+    var object=saveAttr.obtain(this.getId,'textDynamics')
+    var arr = Object.getOwnPropertyNames(object);
+    console.log(arr.length);
+
+    if(arr.length){
+      this.form=saveAttr.obtain(this.getId,'textDynamics')
+    }
+  },
+  watch:{
+    getId(newVal){
+      var object=saveAttr.obtain(newVal,'textDynamics')
+      var arr = Object.getOwnPropertyNames(object);
+      console.log(arr.length);
+      if(arr.length){
+        this.form=saveAttr.obtain(newVal,'textDynamics')
+      }else{
+        this.form={
+          name: null,
+          value:[{choose:true,min:null,max:null,text:null}]
+        }
+      }
     }
   },
   components: {
