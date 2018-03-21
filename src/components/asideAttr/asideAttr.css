@@ -1,0 +1,18 @@
+li {
+  width: 164px;
+  height: 25px;
+  line-height: 25px;
+  overflow: hidden;
+  border-bottom: 1px solid #d0c7c7;
+}
+.left {
+  float: left;
+  width: 82px;
+  overflow: hidden;
+  border-right: 1px solid #d0c7c7;
+}
+.right {
+  float: left;
+  width: 81px;
+  overflow: hidden;
+}

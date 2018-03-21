@@ -87,8 +87,6 @@ export default {
   mounted(){
     var object=saveAttr.obtain(this.getId,'textDynamics')
     var arr = Object.getOwnPropertyNames(object);
-    console.log(arr.length);
-
     if(arr.length){
       this.form=saveAttr.obtain(this.getId,'textDynamics')
     }

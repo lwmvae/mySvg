@@ -2,9 +2,10 @@
   <div id="app">
     <button id="btn1" @click="add('valueShow','btn1')">点击</button>  
     <button id="btn2" @click="add('valueShow','btn2')">点击</button>  
-    <button id="btn3" @click="add('textDynamics','btn3')">点击</button>  
+    <button id="btn3" @click="add('textDynamics','btn1')">点击</button>  
     <button id="btn4" @click="add('textDynamics','btn4')">点击</button>  
     <component :is="componentName" :getId="getId"></component>
+    <aside-attr :getId="getId"></aside-attr>
   </div>
 </template>
 
@@ -29,6 +30,9 @@ import Setdyna from './events/setdyna/setdyna'
 import Add from './events/add/add'
 // GO
 import Go from './events/go/go'
+
+import AsideAttr from './components/asideAttr/asideAttr'
+
 
 import { mapMutations } from 'vuex'
 
@@ -59,7 +63,8 @@ export default {
     Set,
     Setdyna,
     Add,
-    Go
+    Go,
+    AsideAttr
   }
 }
 </script>

@@ -22,7 +22,11 @@ SaveAttr.prototype.obtain=function(id,attrName){
 
 
 var saveAttr=new SaveAttr();
-
+// saveAttr.add('btn1','valueShow',{
+// 	attr:'值显示',
+//   name:123,
+//   type:1
+// })
 export {saveAttr};
 
 

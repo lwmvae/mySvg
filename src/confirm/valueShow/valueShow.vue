@@ -1,6 +1,6 @@
 <template>
   <popup title="值显示" @save="saveValue" @del="del">
-    <el-form ref="form" :model="form" label-width="60px">
+    <el-form label-width="60px">
       <el-form-item label="变量名">
         <el-input v-model="form.name"></el-input>
       </el-form-item>
@@ -24,6 +24,7 @@ export default {
   data() {
     return {
       form: {
+        attr:'值显示',
         name:null,
         type:null
       }
@@ -31,19 +32,38 @@ export default {
   },
   methods:{
     saveValue(){
+      console.log(this.form)
       saveAttr.add(this.getId,'valueShow',this.form)
     },
     del(){
-      this.form={};
+      this.form={
+        attr:'值显示',
+        name:null,
+        type:null
+      };
       saveAttr.del(this.getId,'valueShow')
     },
   },
   mounted(){
-    this.form=saveAttr.obtain(this.getId,'valueShow')
+    var object=saveAttr.obtain(this.getId,'valueShow');
+    var arr=Object.getOwnPropertyNames(object);
+    if(arr.length){
+      this.form=saveAttr.obtain(this.getId,'valueShow')
+    }
   },
   watch:{
     getId(newVal){
-      this.form=saveAttr.obtain(newVal,'valueShow')
+      var object=saveAttr.obtain(newVal,'valueShow');
+      var arr=Object.getOwnPropertyNames(object);
+      if(arr.length){
+        this.form=saveAttr.obtain(newVal,'valueShow')
+      }else{
+        this.form={
+          attr:'值显示',
+          name:null,
+          type:null
+        }
+      }
     }
   },
   components: {
