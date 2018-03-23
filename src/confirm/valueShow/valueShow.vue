@@ -32,7 +32,7 @@ export default {
   },
   methods:{
     saveValue(){
-      console.log(this.form)
+      // console.log(this.form)
       saveAttr.add(this.getId,'valueShow',this.form)
     },
     del(){

@@ -3,9 +3,13 @@ function SaveAttr() {
 }
 
 SaveAttr.prototype.add=function(id,attrName,data){
-	let object={};
-	object[attrName]=data;
-	this.addAttr[id]=object;
+	if(this.addAttr[id]){
+		this.addAttr[id][attrName]=data;
+	}else{
+		let obj={};
+		obj[attrName]=data;
+		this.addAttr[id]=obj;
+	}
 }
 
 SaveAttr.prototype.del=function(id,attrName){
@@ -14,7 +18,6 @@ SaveAttr.prototype.del=function(id,attrName){
 
 SaveAttr.prototype.obtain=function(id,attrName){
 	if(this.addAttr[id]){
-	// console.log(this.addAttr[id][attrName])
 		return this.addAttr[id][attrName];
 	}
 	return {};
@@ -22,11 +25,7 @@ SaveAttr.prototype.obtain=function(id,attrName){
 
 
 var saveAttr=new SaveAttr();
-// saveAttr.add('btn1','valueShow',{
-// 	attr:'值显示',
-//   name:123,
-//   type:1
-// })
+
 export {saveAttr};
 
 

@@ -1,0 +1,36 @@
+{
+	"id1":{
+		"valueShow":{
+			"attr":"值显示",
+			"name":"qwe",
+			"type":"circle"
+		},
+		"textDynamics":{
+			"attr":"文本动态",
+			"name":"1234456",
+			"value":[{
+				"choose":true,
+				"min":null,
+				"max":null,
+				"text":null
+			}]
+		}
+	},
+	"id2":{
+		"valueShow":{
+			"attr":"值显示",
+			"name":"qwe",
+			"type":"circle"
+		},
+		"textDynamics":{
+			"attr":"文本动态",
+			"name":"1234456",
+			"value":[{
+				"choose":true,
+				"min":null,
+				"max":null,
+				"text":null
+			}]
+		}
+	}
+}

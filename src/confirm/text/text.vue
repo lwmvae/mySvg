@@ -51,6 +51,7 @@ export default {
   data() {
     return {
       form: {
+        attr:'文本动态',
         name: null,
         value:[{choose:true,min:null,max:null,text:null}]
       }
@@ -63,6 +64,7 @@ export default {
     },
     del(){
       this.form={
+        attr:'文本动态',
         name: null,
         value:[{choose:true,min:null,max:null,text:null}]
       };
@@ -85,6 +87,7 @@ export default {
     },
   },
   mounted(){
+    console.log(1);
     var object=saveAttr.obtain(this.getId,'textDynamics')
     var arr = Object.getOwnPropertyNames(object);
     if(arr.length){
@@ -100,6 +103,7 @@ export default {
         this.form=saveAttr.obtain(newVal,'textDynamics')
       }else{
         this.form={
+          attr:'文本动态',
           name: null,
           value:[{choose:true,min:null,max:null,text:null}]
         }
