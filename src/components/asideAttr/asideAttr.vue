@@ -45,7 +45,7 @@ export default {
 		this.attrArr=this._getData();
 	},
 	watch:{
-		getId(newVal){
+		getId:function(newVal){
 			this.attrArr=this._getData();
 		}
 	}

@@ -18,6 +18,9 @@ SaveAttr.prototype.del=function(id,attrName){
 
 SaveAttr.prototype.obtain=function(id,attrName){
 	if(this.addAttr[id]){
+		if(this.addAttr[id][attrName]==undefined){
+			return {};
+		}
 		return this.addAttr[id][attrName];
 	}
 	return {};

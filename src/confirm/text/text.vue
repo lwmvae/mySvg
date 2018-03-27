@@ -25,8 +25,12 @@
             <td>
               <i class="less"></i>
             </td>
-            <td><el-input class="num" v-model="item.max"></el-input></td>
-            <td><el-input v-model="item.text"></el-input></td>
+            <td>
+              <el-input class="num" v-model="item.max"></el-input>
+            </td>
+            <td>
+              <el-input v-model="item.text"></el-input>
+            </td>
             <el-button plain class="el-icon-minus" @click="reduce(index)"></el-button>
           </tr>
         </tbody>
@@ -40,6 +44,13 @@
 <script>
 import Popup from '../popup/popup'
 import { saveAttr } from '../../common/attribute.js'
+import { getData } from '../../common/getData.js'
+
+var obj={
+  attr:'文本动态',
+  name: null,
+  value:[{choose:true,min:null,max:null,text:null}]
+}; 
 
 export default {
   props:{
@@ -50,28 +61,20 @@ export default {
   },
   data() {
     return {
-      form: {
-        attr:'文本动态',
-        name: null,
-        value:[{choose:true,min:null,max:null,text:null}]
-      }
+      form: {}
     }
   },
   methods:{
     saveValue(){
-      this.form.value=this.filterForm(this.form.value) 
-      saveAttr.add(this.getId,'textDynamics',this.form)
+      this.form.value=this.filterForm(this.form.value); 
+      saveAttr.add(this.getId,'textDynamics',this.form);
     },
     del(){
-      this.form={
-        attr:'文本动态',
-        name: null,
-        value:[{choose:true,min:null,max:null,text:null}]
-      };
+      this.form=obj;
       saveAttr.del(this.getId,'textDynamics')
     },
     add(){
-      this.form.value.push({choose:true,min:null,max:null,text:null})
+      this.form.value.push(obj.value[0])
     },
     reduce(index){
       this.form.value.splice(index,1)
@@ -85,29 +88,20 @@ export default {
       })
       return ret;
     },
+    _getData(){
+      if(getData(this.getId,'textDynamics')){
+        this.form=getData(this.getId,'textDynamics')
+      }else{
+        this.form=obj
+      }
+    }
   },
   mounted(){
-    console.log(1);
-    var object=saveAttr.obtain(this.getId,'textDynamics')
-    var arr = Object.getOwnPropertyNames(object);
-    if(arr.length){
-      this.form=saveAttr.obtain(this.getId,'textDynamics')
-    }
+    this._getData()
   },
   watch:{
     getId(newVal){
-      var object=saveAttr.obtain(newVal,'textDynamics')
-      var arr = Object.getOwnPropertyNames(object);
-      console.log(arr.length);
-      if(arr.length){
-        this.form=saveAttr.obtain(newVal,'textDynamics')
-      }else{
-        this.form={
-          attr:'文本动态',
-          name: null,
-          value:[{choose:true,min:null,max:null,text:null}]
-        }
-      }
+      this._getData()
     }
   },
   components: {

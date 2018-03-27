@@ -14,6 +14,12 @@
 import Popup from '../popup/popup'
 import { saveAttr } from '../../common/attribute.js'
 
+var obj={
+  attr:'值显示',
+  name:null,
+  type:null
+};
+
 export default {
   props:{
     getId:{
@@ -23,47 +29,50 @@ export default {
   },
   data() {
     return {
-      form: {
-        attr:'值显示',
-        name:null,
-        type:null
-      }
+      form: {}
     }
   },
   methods:{
     saveValue(){
-      // console.log(this.form)
       saveAttr.add(this.getId,'valueShow',this.form)
     },
     del(){
-      this.form={
-        attr:'值显示',
-        name:null,
-        type:null
-      };
+      this.form=obj;
       saveAttr.del(this.getId,'valueShow')
     },
+    _getData(id){
+      var object=saveAttr.obtain(id,'valueShow');
+      var arr=Object.getOwnPropertyNames(object);
+      if(arr.length){
+        this.form=saveAttr.obtain(id,'valueShow')
+      }else{
+        this.form=obj
+      }
+    }
   },
   mounted(){
-    var object=saveAttr.obtain(this.getId,'valueShow');
-    var arr=Object.getOwnPropertyNames(object);
-    if(arr.length){
-      this.form=saveAttr.obtain(this.getId,'valueShow')
-    }
+    this._getData(this.getId);
+    // var object=saveAttr.obtain(this.getId,'valueShow');
+    // var arr=Object.getOwnPropertyNames(object);
+    // if(arr.length){
+    //   this.form=saveAttr.obtain(this.getId,'valueShow')
+    // }
   },
   watch:{
     getId(newVal){
-      var object=saveAttr.obtain(newVal,'valueShow');
-      var arr=Object.getOwnPropertyNames(object);
-      if(arr.length){
-        this.form=saveAttr.obtain(newVal,'valueShow')
-      }else{
-        this.form={
-          attr:'值显示',
-          name:null,
-          type:null
-        }
-      }
+      this._getData(newVal);
+
+      // var object=saveAttr.obtain(newVal,'valueShow');
+      // var arr=Object.getOwnPropertyNames(object);
+      // if(arr.length){
+      //   this.form=saveAttr.obtain(newVal,'valueShow')
+      // }else{
+      //   this.form={
+      //     attr:'值显示',
+      //     name:null,
+      //     type:null
+      //   }
+      // }
     }
   },
   components: {
