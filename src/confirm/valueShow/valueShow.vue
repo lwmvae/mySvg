@@ -37,8 +37,12 @@ export default {
       saveAttr.add(this.getId,'valueShow',this.form)
     },
     del(){
-      this.form=obj;
+      this.deepCopyObj()
       saveAttr.del(this.getId,'valueShow')
+    },
+    deepCopyObj(){
+      var obj1=JSON.stringify(obj)
+      this.form=JSON.parse(obj1)
     },
     _getData(id){
       var object=saveAttr.obtain(id,'valueShow');
@@ -46,33 +50,16 @@ export default {
       if(arr.length){
         this.form=saveAttr.obtain(id,'valueShow')
       }else{
-        this.form=obj
+        this.deepCopyObj()
       }
     }
   },
   mounted(){
     this._getData(this.getId);
-    // var object=saveAttr.obtain(this.getId,'valueShow');
-    // var arr=Object.getOwnPropertyNames(object);
-    // if(arr.length){
-    //   this.form=saveAttr.obtain(this.getId,'valueShow')
-    // }
   },
   watch:{
     getId(newVal){
       this._getData(newVal);
-
-      // var object=saveAttr.obtain(newVal,'valueShow');
-      // var arr=Object.getOwnPropertyNames(object);
-      // if(arr.length){
-      //   this.form=saveAttr.obtain(newVal,'valueShow')
-      // }else{
-      //   this.form={
-      //     attr:'值显示',
-      //     name:null,
-      //     type:null
-      //   }
-      // }
     }
   },
   components: {

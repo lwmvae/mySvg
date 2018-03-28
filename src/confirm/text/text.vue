@@ -44,7 +44,7 @@
 <script>
 import Popup from '../popup/popup'
 import { saveAttr } from '../../common/attribute.js'
-import { getData } from '../../common/getData.js'
+// import { getData } from '../../common/getData.js'
 
 var obj={
   attr:'文本动态',
@@ -70,11 +70,11 @@ export default {
       saveAttr.add(this.getId,'textDynamics',this.form);
     },
     del(){
-      this.form=obj;
+      this.deepCopyObj()
       saveAttr.del(this.getId,'textDynamics')
     },
     add(){
-      this.form.value.push(obj.value[0])
+      this.form.value.push({choose:true,min:null,max:null,text:null})
     },
     reduce(index){
       this.form.value.splice(index,1)
@@ -88,20 +88,26 @@ export default {
       })
       return ret;
     },
-    _getData(){
-      if(getData(this.getId,'textDynamics')){
-        this.form=getData(this.getId,'textDynamics')
+    deepCopyObj(){
+      var str=JSON.stringify(obj)
+      this.form=JSON.parse(str)
+    },
+    _getData(id){
+      var object=saveAttr.obtain(id,'textDynamics');
+      var arr=Object.getOwnPropertyNames(object);
+      if(arr.length){
+        this.form=saveAttr.obtain(id,'textDynamics')
       }else{
-        this.form=obj
+        this.deepCopyObj()
       }
     }
   },
   mounted(){
-    this._getData()
+    this._getData(this.getId)
   },
   watch:{
     getId(newVal){
-      this._getData()
+      this._getData(newVal)
     }
   },
   components: {

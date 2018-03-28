@@ -25,12 +25,14 @@ export default {
 	},
 	data(){
 		return{
-			attrArr:[]
+			attrArr:[],
+			obj:{}
 		}
 	},
 	methods:{
 		_getData(){
 			let obj=saveAttr.addAttr[this.getId];
+			// obj=saveAttr.addAttr[this.getId];
 			let arr=[];
 			for(var k in obj){
 				let o={};
@@ -39,13 +41,18 @@ export default {
 				arr.push(o)
 			}
 			return arr;
+			// this.attrArr=arr
 		}
 	},
 	mounted(){
+		// this.obj=saveAttr.addAttr[this.getId];
+		// this._getData();
 		this.attrArr=this._getData();
+		
 	},
 	watch:{
 		getId:function(newVal){
+			// this._getData();
 			this.attrArr=this._getData();
 		}
 	}
