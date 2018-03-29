@@ -26,7 +26,7 @@ export default {
 	data(){
 		return{
 			attrArr:[],
-			obj:{}
+			obj:null
 		}
 	},
 	methods:{

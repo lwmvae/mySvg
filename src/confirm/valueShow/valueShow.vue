@@ -41,8 +41,8 @@ export default {
       saveAttr.del(this.getId,'valueShow')
     },
     deepCopyObj(){
-      var obj1=JSON.stringify(obj)
-      this.form=JSON.parse(obj1)
+      var str=JSON.stringify(obj)
+      this.form=JSON.parse(str)
     },
     _getData(id){
       var object=saveAttr.obtain(id,'valueShow');
