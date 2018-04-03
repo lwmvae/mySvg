@@ -4,11 +4,15 @@
 .el-input__inner {
   height: 30px;
 }
+.el-radio {
+  margin-left: 15px;
+}
 .name {
   width: 300px;
 }
 .table {
-  text-align: center;
+  width: 100%;
+  text-align: left;
 }
 .table th {
   font-weight: 100;
@@ -29,15 +33,24 @@
   height: 20px;
   background: url('../../../icons/left.png') no-repeat center;
 }
-.table .el-select {
-  width: 100px;
-}
 .el-icon-minus,
 .el-icon-plus {
   padding: 7px;
 }
 .num {
   width: 60px;
+}
+.el-color-picker__trigger {
+  border: none;
+  padding: 0;
+}
+.el-color-picker__trigger .el-color-picker__color {
+  width: 60px;
+  height: 30px;
+  border: none;
+}
+.el-color-picker__trigger span + span {
+  display: none;
 }
 .btn-add {
   text-align: center;
