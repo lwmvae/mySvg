@@ -1,18 +1,12 @@
-.el-form {
-  margin-top: 20px;
-}
 .el-input__inner {
   height: 30px;
+  width: 60px;
 }
-.el-radio {
-  margin-left: 15px;
-}
-.name {
-  width: 300px;
+.name .el-input__inner {
+  width: 180px;
 }
 .table {
-  width: 100%;
-  text-align: left;
+  text-align: center;
 }
 .table th {
   font-weight: 100;
@@ -37,20 +31,11 @@
 .el-icon-plus {
   padding: 7px;
 }
-.num {
-  width: 60px;
+.el-form-item {
+  margin-bottom: 10px;
 }
-.el-color-picker__trigger {
-  border: none;
-  padding: 0;
-}
-.el-color-picker__trigger .el-color-picker__color {
-  width: 60px;
-  height: 30px;
-  border: none;
-}
-.el-color-picker__trigger span + span {
-  display: none;
+.el-form-item__label {
+  text-align: left;
 }
 .btn-add {
   text-align: center;

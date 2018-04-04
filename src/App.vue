@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <button id="btn1" @click="add('valueShow','btn1')">点击</button>  
+    <button id="btn1" @click="add('Visual','btn1')">点击</button>  
     <button id="btn2" @click="add('valueShow','btn2')">点击</button>  
     <button id="btn3" @click="add('textDynamics','btn1')">点击</button>  
     <button id="btn4" @click="add('textDynamics','btn2')">点击</button>  

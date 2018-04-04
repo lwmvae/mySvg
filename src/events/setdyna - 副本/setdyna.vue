@@ -1,19 +1,33 @@
 <template>
-  <popup title="变量映射" @save="saveValue" @del="del">
+  <popup title="事件SETDYNA" @save="saveValue" @del="del">
     <el-form ref="form" :model="form" label-width="60px">
+      <trigger-mode :options="options" @mode="getType"></trigger-mode>
+      <el-form-item label="变量名">
+        <el-input class="name" v-model="form.name"></el-input>
+      </el-form-item>
       <table class="table" v-show="form.value.length">
         <thead>
           <th>序号</th>
           <th>选中</th>
-          <th>增加前缀</th>
-          <th>绑定变量</th>
+          <th></th>
+          <th>下限</th>
+          <th></th>
+          <th>上限</th>
+          <th>赋值为</th>
         </thead>
         <tbody>
           <tr v-for="(item,index) in form.value">
             <td>{{index+1}}</td>
             <td><el-checkbox v-model="item.choose"></el-checkbox></td>
+            <td>
+              <i class="more-equal"></i>
+            </td>
             <td><el-input v-model="item.min"></el-input></td>
+            <td>
+              <i class="less"></i>
+            </td>
             <td><el-input v-model="item.max"></el-input></td>
+            <td><el-input v-model="item.evaluate"></el-input></td>
             <el-button plain class="el-icon-minus" @click="reduce(index)"></el-button>
           </tr>
         </tbody>
@@ -25,26 +39,30 @@
   </popup>
 </template>
 <script>
-import Popup from '../popup/popup'
-
+import Popup from '../../confirm/popup/popup'
+import TriggerMode from '../triggerMode/triggerMode'
 export default {
   data() {
     return {
       form: {
-        value:[{choose:true,min:null,max:null}]
-      }
+        type:null,
+        name: null,
+        value:[{choose:true,min:null,max:null,evaluate:null}]
+      },
+      options:['页面创建','实时刷新','左键单击','左键双击','右键单击','右键双击']
     }
   },
   methods:{
-   saveValue(){ 
-    // this.filterForm(this.form.value) 
-    console.log(this.filterForm(this.form.value))
+   saveValue(){  
    },
    del(){
-
    },
-   add(){
-    this.form.value.push({choose:true,min:null,max:null})
+   getType(index){
+    this.form.type=this.options[index]
+    console.log(this.form.type)
+  },
+  add(){
+    this.form.value.push({choose:true,min:null,max:null,evaluate:null})
     },
     reduce(index){
       this.form.value.splice(index,1)
@@ -58,12 +76,13 @@ export default {
       })
       return ret;
     }
-  },
-  components: {
-    Popup
-  }
+},
+components: {
+  Popup,
+  TriggerMode
+}
 }
 </script>
 <style>
-@import 'mapping.css'
+@import 'setdyna.css'
 </style>
