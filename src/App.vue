@@ -6,6 +6,7 @@
     <button id="btn4" @click="add('textDynamics','btn2')">点击</button>  
     <component :is="componentName" :getId="getId"></component>
     <aside-attr :getId="getId"></aside-attr>
+    <open></open>
   </div>
 </template>
 
@@ -30,6 +31,8 @@ import Setdyna from './events/setdyna/setdyna'
 import Add from './events/add/add'
 // GO
 import Go from './events/go/go'
+//open
+import Open from './events/open/open'
 
 import AsideAttr from './components/asideAttr/asideAttr'
 
@@ -64,6 +67,7 @@ export default {
     Setdyna,
     Add,
     Go,
+    Open,
     AsideAttr
   }
 }

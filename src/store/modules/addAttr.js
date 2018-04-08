@@ -1,7 +1,7 @@
 import * as types from '../mutation-types'
 
 let state = {
-  showPopup:false,
+  showPopup:true,
 }
 
 const getters = {
